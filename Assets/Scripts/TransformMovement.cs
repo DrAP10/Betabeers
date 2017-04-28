@@ -11,12 +11,11 @@ public class TransformMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //Forma muy basica de moverse pero ERRONEA, ver TransformMovement2.cs
         if (Input.GetKey(KeyCode.W))
             transform.Translate(Vector3.forward * Time.deltaTime * speed);
-        //Vector3.forward == new Vector3(0,0,1)
         if (Input.GetKey(KeyCode.S))
             transform.Translate(Vector3.back * Time.deltaTime * speed);
-        //Vector3.back == new Vector3(0,0,-1) == -Vector3.forward
         if (Input.GetKey(KeyCode.A))
             transform.Translate(Vector3.left * Time.deltaTime * speed);
         if (Input.GetKey(KeyCode.D))

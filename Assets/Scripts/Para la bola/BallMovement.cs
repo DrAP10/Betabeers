@@ -11,6 +11,7 @@ public class BallMovement : MonoBehaviour {
     // Use this for initialization
     void Start () {
         marcador = Camera.main.GetComponent<Marcador>();
+        //Inicializamos la dirección de la pelota y la normalizamos para que su modulo sea 1 y solo indique dirección
 		velocity = (new Vector3(Random.Range(-1.0f, 1.0f), 0.0f, Random.Range(-1.0f, 1.0f))).normalized;
         lastPlayer = 0;
 	}
@@ -19,6 +20,8 @@ public class BallMovement : MonoBehaviour {
 	void Update () {
         GetComponent<Rigidbody>().velocity = velocity * speed * ((fast)?2:1);
     }
+
+
     void OnCollisionEnter(Collision collision)
 	{
         velocity = Vector3.Reflect(velocity, collision.contacts[0].normal);
@@ -40,11 +43,6 @@ public class BallMovement : MonoBehaviour {
                 else if (lastPlayer == 4)
                     gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
             }
-            /*bool shooting = collision.gameObject.GetComponentInParent<Animation>().IsPlaying("Shoot");
-            if (shooting)
-                fast = true;
-            else
-                fast = false;*/
         }
     }
     
@@ -55,15 +53,6 @@ public class BallMovement : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider)
     {
-        /*TextMesh text= collider.transform.parent.transform.Find("Marcador").GetComponent<TextMesh>();
-        int goles = System.Int32.Parse(text.text);
-        if (goles>0)
-            text.text= (goles-1).ToString();
-        if(lastPlayer!=null)
-        {
-            text = lastPlayer.transform.Find("Marcador").GetComponent<TextMesh>();
-            text.text = (System.Int32.Parse(text.text) + 1).ToString();
-        }*/
         if(marcador.puntuacion[collider.GetComponent<Id>().playerId - 1]>0)
             marcador.puntuacion[collider.GetComponent<Id>().playerId-1]--;
         if(lastPlayer!=0)

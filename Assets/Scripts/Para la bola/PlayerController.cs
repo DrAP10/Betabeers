@@ -21,12 +21,8 @@ public class PlayerController : MonoBehaviour {
     {
         float x = Input.GetAxis("Horizontal");
         transform.Translate(transform.right * speed * x * Time.deltaTime, Space.World);
-        /*if(Input.GetButtonDown("Fire1")&&!gameObject.GetComponent<PlayerState>().shooting)
-        {
-            gameObject.GetComponent<Animation>().Play(PlayMode.StopSameLayer);
-            //StartCoroutine(Shoot());
-        }*/
     }
+
     void OnGUI()
     {
         guiStyle.normal.textColor = Color.blue;

@@ -26,9 +26,7 @@ public class RigidbodyMovement : MonoBehaviour {
         if (jumping)
             return;
         moveDirection = new Vector3(Speed * Input.GetAxis("Horizontal"), 0, Speed * Input.GetAxis("Vertical"));
-        //moveDirection = transform.TransformDirection(moveDirection);
         rigidbody.velocity = new Vector3(moveDirection.x, rigidbody.velocity.y, moveDirection.z);
-        //rigidbody.MovePosition(moveDirection);
         if (Input.GetAxis("Jump") > 0)
         {
             rigidbody.AddForce(Vector3.up * Jump, ForceMode.Impulse);
